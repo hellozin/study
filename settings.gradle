@@ -1,3 +1,4 @@
 rootProject.name = 'study'
 include 'rabbitmq-producer'
+include 'rabbitmq-consumer'
 
