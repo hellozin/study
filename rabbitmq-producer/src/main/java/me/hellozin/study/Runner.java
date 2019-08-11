@@ -18,7 +18,8 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) {
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(topicExchange, "foo.bar.baz", "Hello Message!");
+        CustomMessage message = new CustomMessage("Hello Message!", 1, true);
+        rabbitTemplate.convertAndSend(topicExchange, "foo.bar.baz", message);
     }
 
 }

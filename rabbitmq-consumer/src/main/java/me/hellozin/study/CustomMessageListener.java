@@ -1,6 +1,5 @@
 package me.hellozin.study;
 
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class CustomMessageListener {
 
     @RabbitListener(queues = "spring-boot")
-    public void receiveMessage(final Message message) {
+    public void receiveMessage(final CustomMessage message) {
         System.out.println(message);
     }
 
