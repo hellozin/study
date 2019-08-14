@@ -1,4 +1,5 @@
 rootProject.name = 'study'
 include 'rabbitmq-producer'
 include 'rabbitmq-consumer'
+include 'jpa-specification'
 
