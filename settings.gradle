@@ -2,4 +2,7 @@ rootProject.name = 'study'
 include 'rabbitmq-producer'
 include 'rabbitmq-consumer'
 include 'jpa-specification'
+include 'mvc-request-param'
+include 'token-based-web-security'
+include 'security-form-login'
 
