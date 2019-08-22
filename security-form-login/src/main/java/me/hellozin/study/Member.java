@@ -24,7 +24,7 @@ public class Member {
 
     private int age;
 
-    private boolean isMerried;
+    private boolean isMarried;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
