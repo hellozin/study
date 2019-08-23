@@ -3,16 +3,16 @@ package me.hellozin.study;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@ToString
 public class Member {
 
     @Id @GeneratedValue
@@ -22,11 +22,19 @@ public class Member {
 
     private String password;
 
-    private int age;
+    private Integer age;
 
-    private boolean isMarried;
+    private Boolean isMarried;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    public Member(String memberId, String password, Integer age, Boolean isMarried) {
+        this.memberId = memberId;
+        this.password = password;
+        this.age = age;
+        this.isMarried = isMarried;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }

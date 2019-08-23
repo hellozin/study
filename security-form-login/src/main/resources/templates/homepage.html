@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Current Member Id</h1>
+<p th:text="${currentMemberId}"></p>
+<h1>Members</h1>
+<table>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.getMemberId()}"></td>
+        <td th:text="${member.getAge()}"></td>
+        <td th:text="${member.getIsMarried()}"></td>
+    </tr>
+</table>
+</body>
+</html>
