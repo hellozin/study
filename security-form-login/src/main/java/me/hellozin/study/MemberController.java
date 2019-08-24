@@ -44,7 +44,7 @@ public class MemberController {
     public String memberJoin(Member memberForm) {
         memberForm.setPassword(passwordEncoder.encode(memberForm.getPassword()));
         memberRepository.save(memberForm);
-        return "redirect:/main";
+        return "redirect:/login";
     }
 
 }
