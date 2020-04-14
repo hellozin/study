@@ -2,9 +2,9 @@ package me.hellozin.study;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,24 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SimpleController {
 
+    GenericSpec<Item> genericSpec;
+
+    @PostConstruct
+    private void buildSpec() {
+        genericSpec = new GenericSpec<>();
+
+        genericSpec.add("id", (Item item, Object value) -> item.getId().equals(value));
+        genericSpec.add("name", (Item item, Object value) -> item.getName().equals(value));
+    }
+
     @GetMapping("/test")
     public List<Item> getList(@RequestParam Map<String, Object> params) {
-        Specification<Item> spec = buildSpecification(params);
-
         List<Item> items = internalGetList();
-        return spec.searchWith(items, params.keySet());
+
+        return genericSpec.search(items, params);
     }
-
-    private static Specification<Item> buildSpecification(Map<String, Object> params) {
-        Specification<Item> spec = new Specification<>();
-
-        spec.addPredicate("id", item -> item.getId().equals(params.get("id")));
-        spec.addPredicate("name", item -> item.getName().equals(params.get("name")));
-        spec.setComparator(Comparator.comparing(Item::getDate).reversed());
-
-        return spec;
-    }
-
 
     private List<Item> internalGetList() {
         LocalDate now = LocalDate.now();
